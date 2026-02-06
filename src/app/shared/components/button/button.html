@@ -1,13 +1,14 @@
-<div [class]="containerClass()">
+<div class="btn-container" [class]="containerClass()">
   <button
     [type]="type()"
-    class="btn shadow-sm d-flex align-items-center justify-content-center"
+    class="btn"
     [class]="buttonClass()"
+    [class.is-processing]="isLoading()"
     [disabled]="disabled() || isLoading()"
     (click)="onClick()"
   >
     @if (isLoading()) {
-      <span class="spinner-border spinner-border-sm me-2"></span>
+      <span class="spinner-border spinner-border-sm me-2" role="status"></span>
       <span>Processing...</span>
     } @else {
       {{ label() }}

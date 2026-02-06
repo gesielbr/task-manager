@@ -1,10 +1,28 @@
-<div class="container">
-    <app-input 
-    label="Please enter your user name" 
-    placeholder="Jhon Doe"
-    ariaLabel="addres e-mail" 
-    addonId="email-error-msg"
-    type="text"
-    [control]="signupForm.controls.name">
-    </app-input>
+<div class="signup-wrapper" role="main">
+  
+  <section class="signup-card shadow-sm" aria-labelledby="signup-title">
+    
+    <h1 id="signup-title">Welcome to CodeLeap network!</h1>
+
+    <form [formGroup]="signupForm" (ngSubmit)="handleEnter()" class="signup-content">
+      
+      <app-input 
+        label="Please enter your username" 
+        placeholder="John Doe" 
+        [control]="signupForm.controls.username">
+      </app-input>
+
+      <div class="button-container">
+        <app-button 
+            label="ENTER" 
+            type="submit" 
+            justify="end" 
+            [fullWidth]="false" 
+            [disabled]="signupForm.invalid"
+            [isLoading]="isLoading">
+        </app-button>
+      </div>
+
+    </form>
+  </section>
 </div>

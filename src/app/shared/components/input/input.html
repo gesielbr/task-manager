@@ -1,19 +1,25 @@
-<div class="mb-3">
-  @if (label()) {
-    <label class="form-label">{{ label() }}</label>
-  }
-
+<div class="form-group">
+  <label [attr.for]="inputId" class="form-label">
+    {{ label() }}
+  </label>
+  
   <input
+    [id]="inputId"
     [type]="type()"
-    class="form-control"
-    [class.is-invalid]="control().invalid && control().touched"
     [formControl]="control()"
     [placeholder]="placeholder()"
+    [attr.aria-label]="ariaLabel() || label()"
+    [attr.aria-invalid]="control().invalid && control().touched"
+    [attr.aria-describedby]="control().invalid ? inputId + '-error' : (addonId() || null)"
+    class="form-control"
   />
 
   @if (control().invalid && control().touched) {
-    <div class="invalid-feedback d-block">
+    <small 
+      [id]="inputId + '-error'" 
+      class="text-danger d-block mt-1" 
+      role="alert">
       {{ errorMessage }}
-    </div>
+    </small>
   }
 </div>

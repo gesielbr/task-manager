@@ -1,0 +1,90 @@
+:host {
+  display: block; 
+  width: 100%; 
+}
+
+.btn-container {
+  width: 100%;
+  display: flex;
+
+  
+  &.d-grid {
+    display: grid;
+    button {
+      width: 100%;
+    }
+  }
+}
+
+button {
+  width: 120px; 
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1; 
+  
+  
+  border: 1px solid transparent; 
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+
+ 
+  &:not(:disabled) {
+    cursor: pointer;
+    
+    &.btn-primary { background-color: #7695EC; color: #FFFFFF; border-color: #7695EC; }
+    &.btn-success { background-color: #47B960; color: #FFFFFF; border-color: #47B960; }
+    &.btn-danger { background-color: #ff5151; color: #FFFFFF; border-color: #ff5151; }
+    &.btn-warning { background-color: #ffc107; color: #000000; border-color: #ffc107; }
+    &.btn-info { background-color: #0dcaf0; color: #FFFFFF; border-color: #0dcaf0; }
+    &.btn-secondary { background-color: #6c757d; color: #FFFFFF; border-color: #6c757d; }
+  }
+
+  
+  &[class*="btn-outline-"] {
+    background-color: transparent !important;
+    border: 1px solid currentColor !important; 
+    
+    &:hover:not(:disabled) {
+      background-color: currentColor !important;
+      color: #fff !important;
+    }
+  }
+
+  
+  &:disabled:not(.is-processing) {
+    background-color: #CCCCCC !important;
+    border-color: #CCCCCC !important;
+    color: #FFFFFF !important;
+    cursor: not-allowed;
+    opacity: 0.8;
+  }
+
+  
+  &.is-processing {
+    font-size: 0.75rem;
+    opacity: 0.8; 
+    cursor: wait;
+    
+    
+    &.btn-primary { 
+      background-color: #7695EC !important; 
+      border-color: #7695EC !important; 
+      color: #FFFFFF !important;
+    }
+
+    span {
+      padding: 0 2px;
+    }
+  }
+}
+
+.spinner-border-sm {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-width: 0.15em; 
+}

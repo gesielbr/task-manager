@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.scss */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Evita rolagem horizontal acidental */
+}
+
+body {
+  background-color: #DDDDDD;
+  font-family: 'Roboto', sans-serif;
+}
