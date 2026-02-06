@@ -27,17 +27,17 @@ export class InputComponent {
    * localized error messages based on active validators.
    */
   get errorMessage() {
-    const errors = this.control().errors;
-    
-    // Return null if no errors are present
-    if (!errors) return null;
+  const errors = this.control().errors;
+  if (!errors) return null;
 
-    if (errors['required']) return 'This field is required';
-    if (errors['email']) return 'Please enter a valid email address';
-    if (errors['minlength']) {
-      return `Minimum of ${errors['minlength'].requiredLength} characters required`;
-    }
-    
-    return 'Invalid field';
+  // A ordem aqui importa! 
+  if (errors['required']) return 'This field is required';
+  
+  // Verifique se o nome da chave é 'minlength' (tudo minúsculo)
+  if (errors['minlength']) {
+    return `Minimum of ${errors['minlength'].requiredLength} characters required (You typed ${errors['minlength'].actualLength})`;
   }
+
+  return 'Invalid field';
+}
 }

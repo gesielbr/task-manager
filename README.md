@@ -1,56 +1,102 @@
-# Codelab Front-End Test - Angular Project
+# Codelab Front-End Test – Angular Project
 
 ## 📝 Description
-Project developed for the **Codelab technical test**. This application simulates a user authentication flow (Signup), demonstrating modern Angular best practices, high-performance reactivity, and responsive UI/UX design.
+Project developed for the **Codelab Front-End technical test**.  
+This application simulates a **user signup flow**, focusing on **clean architecture**, **reusable UI components**, **modern Angular APIs**, and **high-quality UX and accessibility**.
+
+---
 
 ## ✨ Key Features
-- **Angular 19 Architecture**: Built using **Standalone Components** for a modular, lightweight, and modern project structure.
-- **Signal-based Inputs**: Leverages the new **Angular Signals API** (`input()` function) for optimized change detection and fine-grained reactivity.
-- **Reusable Form Components**: A custom, highly configurable `InputComponent` that centralizes validation logic and styling, reducing code duplication.
-- **A11y (Accessibility)**: Implementation of ARIA attributes (`aria-label`, `aria-describedby`) to ensure full compatibility with screen readers and assistive technologies.
-- **Bootstrap 5 Integration**: Utilizing modern CSS classes for a fully responsive layout and real-time form validation feedback.
-- **Reactive Forms**: Implementation of typed `FormGroup` and `FormControl` with `NonNullableFormBuilder` for robust data handling.
+
+- **Angular 19 Architecture**  
+  Built using **Standalone Components**, ensuring a lightweight, modular, and future-proof structure.
+
+- **Signal-based Inputs (Angular Signals API)**  
+  Usage of `input()` signals for optimized change detection and fine-grained reactivity.
+
+- **Reusable Form Components**  
+  - Custom `InputComponent` with centralized validation logic, accessibility support, and Bootstrap styling.
+  - Custom `ButtonComponent` with state control (`disabled`, loading-ready structure), improving consistency and reuse across the app.
+
+- **Component Playground**  
+  A dedicated **Playground environment** to test and visualize UI components in isolation, speeding up development and ensuring design consistency.
+
+- **Reactive & Typed Forms**  
+  Implementation of typed `FormGroup` and `FormControl` using `NonNullableFormBuilder` for safer and more predictable form handling.
+
+- **A11y (Accessibility)**  
+  Proper use of ARIA attributes (`aria-label`, `aria-describedby`) to guarantee accessibility compliance.
+
+- **Bootstrap 5 Integration**  
+  Responsive layout, modern UI, and real-time validation feedback using Bootstrap 5 utility classes and components.
+
+- **Smart UI State Control**  
+  Submit button is only enabled when the form is valid, improving user experience and preventing invalid submissions.
+
+---
 
 ## 🛠️ Tech Stack
-- **Framework:** Angular 19
-- **Style:** Bootstrap 5 & SCSS
-- **Forms:** Reactive Forms (Typed)
+
+- **Framework:** Angular 19  
+- **Styling:** Bootstrap 5 & SCSS  
+- **Forms:** Reactive Forms (Typed)  
+
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/) (LTS version recommended)
-- [Angular CLI](https://angular.io/cli) installed globally (`npm install -g @angular/cli`)
+- [Node.js](https://nodejs.org/) (LTS recommended)
+- [Angular CLI](https://angular.io/cli) installed globally  
+  ```bash
+  npm install -g @angular/cli
 
 ### Installation & Setup
 
-1. **Clone the repository:**
-   ```bash
-   git clone <task-manager>
+### Clone the repository
 
-2. **Install dependencies:**
-   ```bash
-   npm install
+git clone <repository-url>
 
-3. **Install dependencies:**
-   ```bash
-   ng serve
 
-4. **Access the app: Open your browser at http://localhost:4200/**
+### Install dependencies
+
+npm install
+
+
+### Run the application
+
+ng serve
+
+
+### Access the app
+
+http://localhost:4200
+
 📂 Project Structure Highlights
-src/app/shared/components/input: Contains the reusable input component using Signal-based inputs.
 
-src/app/features/auth/signup: The main registration page containing the business logic for user creation.
+src/app/shared/components/input
+Reusable input component using Signal-based inputs and centralized validation.
 
-src/app/core: Reserved for global services, authentication logic, and guards.
+src/app/shared/components/button
+Reusable button component with state handling and consistent UI behavior.
 
-🧪 Validation Logic
-The form includes the following real-time validations:
+src/app/playground
+Component playground for isolated testing and UI experimentation.
 
-Full Name: Required, minimum 3 characters.
+src/app/features/auth/signup
+Signup feature containing form logic and validation rules.
 
-Email: Required, must follow a valid email format.
+src/app/core
+Reserved for global services, authentication logic, and guards.
 
-Password: Required, minimum 6 characters.
+### 🧪 Validation Logic
+
+The signup form includes real-time validations:
+
+Full Name: Required, minimum of 3 characters
+
+Email: Required, must be a valid email format
+
+Password: Required, minimum of 6 characters
 
 Developed by Gesiel Souza Oliveira

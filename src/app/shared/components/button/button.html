@@ -1,0 +1,16 @@
+<div [class]="containerClass()">
+  <button
+    [type]="type()"
+    class="btn shadow-sm d-flex align-items-center justify-content-center"
+    [class]="buttonClass()"
+    [disabled]="disabled() || isLoading()"
+    (click)="onClick()"
+  >
+    @if (isLoading()) {
+      <span class="spinner-border spinner-border-sm me-2"></span>
+      <span>Processing...</span>
+    } @else {
+      {{ label() }}
+    }
+  </button>
+</div>

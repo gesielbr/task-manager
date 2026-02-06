@@ -1,26 +1,19 @@
+<div class="mb-3">
+  @if (label()) {
+    <label class="form-label">{{ label() }}</label>
+  }
 
-<div class="row">
-    <div class="col-12">
-        @if (label()) {
-            <label [for]="label()" class="form-label">{{ label() }}</label>
-          }
-        <div class="input-group">
-            <input
-            [id]="label()"
-            [type]="type()"
-            class="form-control"
-            [placeholder]="placeholder()"
-            [formControl]="control()"
-            [class.is-invalid]="control().invalid && control().touched"
-        
-            [attr.aria-label]="ariaLabel()"
-            [attr.aria-describedby]="addonId()"
-          />
-        
-          @if (control().invalid && control().touched) {
-            <div class="invalid-feedback d-block" [id]="addonId()">
-              {{ errorMessage }} </div>
-          }
-        </div>
+  <input
+    [type]="type()"
+    class="form-control"
+    [class.is-invalid]="control().invalid && control().touched"
+    [formControl]="control()"
+    [placeholder]="placeholder()"
+  />
+
+  @if (control().invalid && control().touched) {
+    <div class="invalid-feedback d-block">
+      {{ errorMessage }}
     </div>
+  }
 </div>
