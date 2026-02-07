@@ -1,19 +1,20 @@
 input {
-  border: 1px solid #777777; 
+  border: 1px solid #777777;
   border-radius: 8px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   color: #000000;
-  padding: 8px 12px; 
+  padding: 8px 12px;
   font-size: 14px;
   outline: none;
   width: 100%;
   transition: border-color 0.2s;
+  height: 32px;
 
   &:focus {
-    border-color: #7695EC; 
+    border-color: #7695ec;
   }
 
   &::placeholder {
-    color: #CCCCCC;
+    color: #cccccc;
   }
 }

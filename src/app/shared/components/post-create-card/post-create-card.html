@@ -1,0 +1,35 @@
+<div class="post-create-card">
+  <div class="card-content">
+    <h2 class="card-title">What’s on your mind?</h2>
+
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <app-input
+          label="Title"
+          placeholder="Hello world"
+          [control]="postForm.controls.title"
+        ></app-input>
+      </div>
+
+      <div class="form-group">
+        <app-textarea
+          label="Content"
+          placeholder="Content here"
+          size="sm"
+          [control]="postForm.controls.content"
+        ></app-textarea>
+      </div>
+
+      <div class="button-container">
+        <app-button
+          type="submit"
+          label="Create"
+          [fullWidth]="false"
+          justify="end"
+          [disabled]="postForm.invalid"
+        >
+        </app-button>
+      </div>
+    </form>
+  </div>
+</div>

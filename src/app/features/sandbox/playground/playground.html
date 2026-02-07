@@ -4,7 +4,7 @@
     <p class="lead text-muted">Use this environment to test UI components in isolation.</p>
   </header>
 
-  <hr class="my-5">
+  <hr class="my-5" />
 
   <section class="mb-5">
     <h2 class="h4 mb-3 text-primary">Component: Button</h2>
@@ -32,18 +32,20 @@
       <div class="row g-4">
         <div class="col-md-6">
           <h6>Default State</h6>
-          <app-input 
-            label="User Name" 
-            placeholder="Type something..." 
-            [control]="testForm.controls.textControl">
+          <app-input
+            label="User Name"
+            placeholder="Type something..."
+            [control]="testForm.controls.textControl"
+          >
           </app-input>
         </div>
         <div class="col-md-6">
           <h6>Error State (Required + MinLength 5)</h6>
-          <app-input 
-            label="Validation Test" 
-            placeholder="Enter at least 5 chars" 
-            [control]="testForm.controls.errorControl">
+          <app-input
+            label="Validation Test"
+            placeholder="Enter at least 5 chars"
+            [control]="testForm.controls.errorControl"
+          >
           </app-input>
           <small class="text-muted mt-2 d-block">
             Type fewer than 5 characters and click outside to see the validation change.
@@ -57,62 +59,69 @@
     <h2 class="h4 mb-3 text-primary">Component: Textarea Variations</h2>
     <div class="card p-4 shadow-sm">
       <div class="row g-4">
-        
         <div class="col-md-4">
           <h6 class="text-muted small mb-3">Size: Small ('sm')</h6>
-          <app-textarea 
-            label="Quick Note" 
-            placeholder="Short comment..." 
+          <app-textarea
+            label="Quick Note"
+            placeholder="Short comment..."
             size="sm"
-            [control]="testForm.controls.textControl">
+            [control]="testForm.controls.textControl"
+          >
           </app-textarea>
         </div>
 
         <div class="col-md-4">
           <h6 class="text-muted small mb-3">Size: Medium ('md')</h6>
-          <app-textarea 
-            label="Post Content" 
-            placeholder="What's on your mind?" 
+          <app-textarea
+            label="Post Content"
+            placeholder="What's on your mind?"
             size="md"
-            [control]="testForm.controls.textControl">
+            [control]="testForm.controls.textControl"
+          >
           </app-textarea>
         </div>
 
         <div class="col-md-4">
           <h6 class="text-muted small mb-3">Size: Large ('lg')</h6>
-          <app-textarea 
-            label="Biography" 
-            placeholder="Tell us your full story..." 
+          <app-textarea
+            label="Biography"
+            placeholder="Tell us your full story..."
             size="lg"
-            [control]="testForm.controls.textControl">
+            [control]="testForm.controls.textControl"
+          >
           </app-textarea>
         </div>
-
       </div>
     </div>
   </section>
 
   <section class="mb-5">
     <h2 class="h4 mb-3 text-success">Submission Test: Reactive Button</h2>
-    <div class="card p-4 shadow-sm border-success" style="max-width: 500px;">
+    <div class="card p-4 shadow-sm border-success" style="max-width: 500px">
       <form [formGroup]="sendForm" (ngSubmit)="handleSubmission()">
-        <app-input 
-          label="Full Name" 
-          placeholder="Min 3 characters to unlock" 
-          [control]="sendForm.controls.userName">
+        <app-input
+          label="Full Name"
+          placeholder="Min 3 characters to unlock"
+          [control]="sendForm.controls.userName"
+        >
         </app-input>
 
         <div class="mt-4">
-          <app-button 
-            label="Submit Registration" 
-            type="submit" 
-            color="success" 
+          <app-button
+            label="Submit Registration"
+            type="submit"
+            color="success"
             size=""
-            [disabled]="sendForm.invalid">
+            [disabled]="sendForm.invalid"
+          >
           </app-button>
         </div>
-        
-        <p class="mt-3 mb-0 small fw-bold" [class.text-danger]="sendForm.invalid" [class.text-success]="sendForm.valid">
+
+        <p
+          class="mt-3 mb-0 small fw-bold"
+          [class.text-danger]="sendForm.invalid"
+          [class.text-success]="sendForm.valid"
+        >
           Form Status: {{ sendForm.valid ? '✅ Valid' : '❌ Invalid' }}
         </p>
       </form>
@@ -123,60 +132,50 @@
     <h2 class="h4 mb-3 text-primary">Component: Button Justification</h2>
     <div class="card p-4 shadow-sm">
       <div class="row">
-        
         <div class="col-12 mb-3 border-bottom pb-3">
           <h6 class="text-muted small">Justify: Start (Left)</h6>
-          <app-button 
-            label="Left" 
-            [fullWidth]="false" 
-            justify="start">
-          </app-button>
+          <app-button label="Left" [fullWidth]="false" justify="start"> </app-button>
         </div>
 
         <div class="col-12 mb-3 border-bottom pb-3">
           <h6 class="text-muted small">Justify: Center</h6>
-          <app-button 
-            label="Center" 
-            [fullWidth]="false" 
-            justify="center"
-            color="secondary">
+          <app-button label="Center" [fullWidth]="false" justify="center" color="secondary">
           </app-button>
         </div>
 
         <div class="col-12">
           <h6 class="text-muted small">Justify: End (Right)</h6>
-          <app-button 
-            label="Right" 
-            [fullWidth]="false" 
-            justify="end"
-            color="success">
-          </app-button>
+          <app-button label="Right" [fullWidth]="false" justify="end" color="success"> </app-button>
         </div>
-
       </div>
     </div>
   </section>
 
   <section class="mb-5">
     <h2 class="h4 mb-3 text-primary">Component: Headers</h2>
-    <div class="card p-4 shadow-sm bg-light"> <div class="mb-4">
+    <div class="card p-4 shadow-sm bg-light">
+      <div class="mb-4">
         <h6 class="text-muted small">Main Header (Site Top)</h6>
-        <app-header 
-          title="CodeLeap Network">
-        </app-header>
+        <app-header title="CodeLeap Network"> </app-header>
       </div>
 
       <div>
         <h6 class="text-muted small">Card Header (Post Item)</h6>
-        <app-header 
-          title="My First Post!" 
-          variant="rounded" 
+        <app-header
+          title="My First Post!"
+          variant="rounded"
           [showActions]="true"
           (deleteClick)="console('Delete clicked')"
-          (editClick)="console('Edit clicked')">
+          (editClick)="console('Edit clicked')"
+        >
         </app-header>
       </div>
-
     </div>
+  </section>
+
+  <section class="mb-5">
+    <h2 class="h4 mb-3 text-primary">Component: Post Create Card (Integrated)</h2>
+    <h6 class="text-muted small mb-3">Complete form using Input, Textarea and Button:</h6>
+    <app-post-create-card (onCreate)="handlePostCreation($event)"></app-post-create-card>
   </section>
 </div>
