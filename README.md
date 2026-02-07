@@ -73,21 +73,17 @@ ng serve
 http://localhost:4200
 
 📂 Project Structure Highlights
+src/app/shared/components/input Reusable input component using Signal-based inputs and centralized validation.
 
-src/app/shared/components/input
-Reusable input component using Signal-based inputs and centralized validation.
+src/app/shared/components/textarea Scalable textarea component with multiple size supports.
 
-src/app/shared/components/button
-Reusable button component with state handling and consistent UI behavior.
+src/app/shared/components/button Reusable button component with state handling and consistent UI behavior.
 
-src/app/playground
-Component playground for isolated testing and UI experimentation.
+src/app/playground Component playground for isolated testing and UI experimentation.
 
-src/app/features/auth/signup
-Signup feature containing form logic and validation rules.
+src/app/features/auth/signup Signup feature containing form logic and validation rules.
 
-src/app/core
-Reserved for global services, authentication logic, and guards.
+src/app/core Reserved for global services, authentication logic, and guards.
 
 ### 🧪 Validation Logic
 
