@@ -54,6 +54,45 @@
   </section>
 
   <section class="mb-5">
+    <h2 class="h4 mb-3 text-primary">Component: Textarea Variations</h2>
+    <div class="card p-4 shadow-sm">
+      <div class="row g-4">
+        
+        <div class="col-md-4">
+          <h6 class="text-muted small mb-3">Size: Small ('sm')</h6>
+          <app-textarea 
+            label="Quick Note" 
+            placeholder="Short comment..." 
+            size="sm"
+            [control]="testForm.controls.textControl">
+          </app-textarea>
+        </div>
+
+        <div class="col-md-4">
+          <h6 class="text-muted small mb-3">Size: Medium ('md')</h6>
+          <app-textarea 
+            label="Post Content" 
+            placeholder="What's on your mind?" 
+            size="md"
+            [control]="testForm.controls.textControl">
+          </app-textarea>
+        </div>
+
+        <div class="col-md-4">
+          <h6 class="text-muted small mb-3">Size: Large ('lg')</h6>
+          <app-textarea 
+            label="Biography" 
+            placeholder="Tell us your full story..." 
+            size="lg"
+            [control]="testForm.controls.textControl">
+          </app-textarea>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-5">
     <h2 class="h4 mb-3 text-success">Submission Test: Reactive Button</h2>
     <div class="card p-4 shadow-sm border-success" style="max-width: 500px;">
       <form [formGroup]="sendForm" (ngSubmit)="handleSubmission()">
@@ -88,7 +127,7 @@
         <div class="col-12 mb-3 border-bottom pb-3">
           <h6 class="text-muted small">Justify: Start (Left)</h6>
           <app-button 
-            label="Left Aligned" 
+            label="Left" 
             [fullWidth]="false" 
             justify="start">
           </app-button>
@@ -97,7 +136,7 @@
         <div class="col-12 mb-3 border-bottom pb-3">
           <h6 class="text-muted small">Justify: Center</h6>
           <app-button 
-            label="Center Aligned" 
+            label="Center" 
             [fullWidth]="false" 
             justify="center"
             color="secondary">
@@ -107,10 +146,10 @@
         <div class="col-12">
           <h6 class="text-muted small">Justify: End (Right)</h6>
           <app-button 
-            label="Right Aligned" 
+            label="Right" 
             [fullWidth]="false" 
             justify="end"
-            color="info">
+            color="success">
           </app-button>
         </div>
 

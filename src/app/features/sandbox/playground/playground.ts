@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputComponent } from '../../../shared/components/input/input';
 import { ButtonComponent } from '../../../shared/components/button/button';
-
+import { TextareaComponent } from '../../../shared/components/textarea/textarea';
 @Component({
   selector: 'app-playground',
   standalone: true,
-  imports: [ButtonComponent, InputComponent, ReactiveFormsModule], 
+  imports: [ButtonComponent, InputComponent,TextareaComponent, ReactiveFormsModule], 
   templateUrl: './playground.html',
   styleUrl: './playground.scss',
 })
