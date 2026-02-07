@@ -14,6 +14,7 @@ This application simulates a **user signup flow**, focusing on **clean architect
 - **Signal-based Inputs (Angular Signals API)** Usage of `input()` signals for optimized change detection and fine-grained reactivity.
 
 - **Reusable UI Components**
+  - **PostCreateCardComponent**: Integrated component that combines input, textarea, and button to handle post creation with reactive validation.
   - **HeaderComponent**: Dual-variant header supporting a main site view (80px) and a card-based view (70px) with rounded corners and action triggers.
   - **InputComponent**: Centralized validation logic, accessibility support, and Bootstrap styling.
   - **TextareaComponent**: Scalable textarea with support for multiple size variants (`sm`, `md`, `lg`) and reactive forms integration.
@@ -64,6 +65,8 @@ ng serve
 http://localhost:4200
 
 📂 Project Structure Highlights
+
+src/app/shared/components/post-create-card: Integrated card for creating new posts.
 
 src/app/shared/components/header: Flexible header with size variants and action buttons.
 
