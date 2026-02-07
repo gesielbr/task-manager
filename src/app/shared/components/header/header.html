@@ -1,0 +1,24 @@
+<header 
+  class="app-header" 
+  [class.rounded-top]="variant() === 'rounded'">
+  
+  <h1>{{ title() }}</h1>
+
+  @if (showActions()) {
+    <div class="actions">
+      <button 
+        class="icon-btn" 
+        (click)="deleteClick.emit()" 
+        aria-label="Delete item">
+        <span class="material-placeholder">🗑️</span> 
+      </button>
+
+      <button 
+        class="icon-btn" 
+        (click)="editClick.emit()" 
+        aria-label="Edit item">
+        <span class="material-placeholder">✏️</span>
+      </button>
+    </div>
+  }
+</header>

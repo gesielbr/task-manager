@@ -1,0 +1,63 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.app-header {
+  // --- VERSÃO PADRÃO (Site Principal) ---
+  background-color: #7695EC;
+  height: 80px; // Mantém 80px aqui
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 37px;
+
+  // --- VERSÃO ARREDONDADA (Cards com Botões) ---
+  &.rounded-top {
+    height: 70px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+
+  h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 100%;
+    color: #FFFFFF;
+    margin: 0;
+  }
+
+  .actions {
+    display: flex;
+    gap: 34px;
+
+    .icon-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      width: 31.2px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      
+      .material-placeholder {
+        font-size: 20px; 
+        filter: grayscale(1) brightness(200%);
+      }
+    }
+  }
+}

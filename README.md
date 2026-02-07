@@ -1,6 +1,7 @@
 # Codelab Front-End Test – Angular Project
 
 ## 📝 Description
+
 Project developed for the **Codelab Front-End technical test**.  
 This application simulates a **user signup flow**, focusing on **clean architecture**, **reusable UI components**, **modern Angular APIs**, and **high-quality UX and accessibility**.
 
@@ -8,48 +9,41 @@ This application simulates a **user signup flow**, focusing on **clean architect
 
 ## ✨ Key Features
 
-- **Angular 19 Architecture**  
-  Built using **Standalone Components**, ensuring a lightweight, modular, and future-proof structure.
+- **Angular 19 Architecture** Built using **Standalone Components**, ensuring a lightweight, modular, and future-proof structure.
 
-- **Signal-based Inputs (Angular Signals API)**  
-  Usage of `input()` signals for optimized change detection and fine-grained reactivity.
+- **Signal-based Inputs (Angular Signals API)** Usage of `input()` signals for optimized change detection and fine-grained reactivity.
 
-- **Reusable Form Components**  
-  - Custom `InputComponent` with centralized validation logic, accessibility support, and Bootstrap styling.
-  - Custom `ButtonComponent` with state control (`disabled`, loading-ready structure), improving consistency and reuse across the app.
+- **Reusable UI Components**
+  - **HeaderComponent**: Dual-variant header supporting a main site view (80px) and a card-based view (70px) with rounded corners and action triggers.
+  - **InputComponent**: Centralized validation logic, accessibility support, and Bootstrap styling.
+  - **TextareaComponent**: Scalable textarea with support for multiple size variants (`sm`, `md`, `lg`) and reactive forms integration.
+  - **ButtonComponent**: State control (`disabled`, loading-ready structure) for consistent UI behavior.
 
-- **Component Playground**  
-  A dedicated **Playground environment** to test and visualize UI components in isolation, speeding up development and ensuring design consistency.
+- **Component Playground** A dedicated **Playground environment** to test and visualize UI components in isolation, speeding up development and ensuring design consistency.
 
-- **Reactive & Typed Forms**  
-  Implementation of typed `FormGroup` and `FormControl` using `NonNullableFormBuilder` for safer and more predictable form handling.
+- **Reactive & Typed Forms** Implementation of typed `FormGroup` and `FormControl` using `NonNullableFormBuilder` for safer and more predictable form handling.
 
-- **A11y (Accessibility)**  
-  Proper use of ARIA attributes (`aria-label`, `aria-describedby`) to guarantee accessibility compliance.
-
-- **Bootstrap 5 Integration**  
-  Responsive layout, modern UI, and real-time validation feedback using Bootstrap 5 utility classes and components.
-
-- **Smart UI State Control**  
-  Submit button is only enabled when the form is valid, improving user experience and preventing invalid submissions.
+- **A11y (Accessibility)** Proper use of ARIA attributes (`aria-label`, `aria-describedby`) to guarantee accessibility compliance.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Framework:** Angular 19  
-- **Styling:** Bootstrap 5 & SCSS  
-- **Forms:** Reactive Forms (Typed)  
+- **Framework:** Angular 19
+- **Styling:** Bootstrap 5 & SCSS
+- **Forms:** Reactive Forms (Typed)
 
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - [Node.js](https://nodejs.org/) (LTS recommended)
-- [Angular CLI](https://angular.io/cli) installed globally  
+- [Angular CLI](https://angular.io/cli) installed globally
   ```bash
   npm install -g @angular/cli
+  ```
 
 ### Installation & Setup
 
@@ -57,22 +51,22 @@ This application simulates a **user signup flow**, focusing on **clean architect
 
 git clone <repository-url>
 
-
 ### Install dependencies
 
 npm install
 
-
 ### Run the application
 
 ng serve
-
 
 ### Access the app
 
 http://localhost:4200
 
 📂 Project Structure Highlights
+
+src/app/shared/components/header: Flexible header with size variants and action buttons.
+
 src/app/shared/components/input Reusable input component using Signal-based inputs and centralized validation.
 
 src/app/shared/components/textarea Scalable textarea component with multiple size supports.

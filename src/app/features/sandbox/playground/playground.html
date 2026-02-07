@@ -156,4 +156,27 @@
       </div>
     </div>
   </section>
+
+  <section class="mb-5">
+    <h2 class="h4 mb-3 text-primary">Component: Headers</h2>
+    <div class="card p-4 shadow-sm bg-light"> <div class="mb-4">
+        <h6 class="text-muted small">Main Header (Site Top)</h6>
+        <app-header 
+          title="CodeLeap Network">
+        </app-header>
+      </div>
+
+      <div>
+        <h6 class="text-muted small">Card Header (Post Item)</h6>
+        <app-header 
+          title="My First Post!" 
+          variant="rounded" 
+          [showActions]="true"
+          (deleteClick)="console('Delete clicked')"
+          (editClick)="console('Edit clicked')">
+        </app-header>
+      </div>
+
+    </div>
+  </section>
 </div>

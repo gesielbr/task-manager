@@ -3,10 +3,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { InputComponent } from '../../../shared/components/input/input';
 import { ButtonComponent } from '../../../shared/components/button/button';
 import { TextareaComponent } from '../../../shared/components/textarea/textarea';
+import { HeaderComponent } from '../../../shared/components/header/header';
 @Component({
   selector: 'app-playground',
   standalone: true,
-  imports: [ButtonComponent, InputComponent,TextareaComponent, ReactiveFormsModule], 
+  imports: [ButtonComponent, InputComponent,TextareaComponent,HeaderComponent ,ReactiveFormsModule], 
   templateUrl: './playground.html',
   styleUrl: './playground.scss',
 })
@@ -38,5 +39,11 @@ export class PlaygroundComponent {
     if (this.sendForm.valid) {
       alert(`Enviado com sucesso: ${this.sendForm.value.userName}`);
     }
+  }
+
+  // Adicione essa função:
+  console(msg: string) {
+    console.log('🔘 Evento disparado:', msg);
+    alert(msg); // Opcional: coloquei um alert pra você ver na tela se preferir
   }
 }
