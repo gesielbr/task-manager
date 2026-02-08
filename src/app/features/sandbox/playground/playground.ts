@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputComponent } from '../../../shared/components/input/input';
 import { ButtonComponent } from '../../../shared/components/button/button';
 import { TextareaComponent } from '../../../shared/components/textarea/textarea';
 import { HeaderComponent } from '../../../shared/components/header/header';
 import { ViewPostCardComponent } from '../../../shared/components/view-post-card/view-post-card';
+import { ModalComponent } from '../../../shared/components/modal/modal';
 @Component({
   selector: 'app-playground',
   standalone: true,
@@ -15,6 +16,7 @@ import { ViewPostCardComponent } from '../../../shared/components/view-post-card
     ViewPostCardComponent,
     HeaderComponent,
     ReactiveFormsModule,
+    ModalComponent,
   ],
   templateUrl: './playground.html',
   styleUrl: './playground.scss',
@@ -75,5 +77,28 @@ export class PlaygroundComponent {
     if (confirmDelete) {
       console.log('User confirmed deletion.');
     }
+  }
+
+  //MODAL!!!!!!!!!!!!!!!!!!!
+  // 1. Estado para controlar se o modal de deleção está visível
+  isDeleteModalOpen = signal(false);
+
+  // 2. Método que será chamado pelo ícone de lixeira no ViewPostCard
+  openDeleteModal(): void {
+    console.log('🗑️ Opening delete confirmation...');
+    this.isDeleteModalOpen.set(true);
+  }
+
+  // 3. Método para fechar o modal (Cancel)
+  closeDeleteModal(): void {
+    this.isDeleteModalOpen.set(false);
+  }
+
+  // 4. Método para confirmar a deleção
+  confirmDeletion(): void {
+    console.log('✅ Item deleted successfully!');
+    // Aqui no futuro chamaremos o Service
+    this.isDeleteModalOpen.set(false);
+    alert('Item deleted!');
   }
 }

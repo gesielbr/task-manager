@@ -14,6 +14,7 @@ This application simulates a **user signup flow**, focusing on **clean architect
 - **Signal-based Inputs (Angular Signals API)** Usage of `input()` signals for optimized change detection and fine-grained reactivity.
 
 - **Reusable UI Components**
+  - **ModalComponent**: A highly flexible and accessible modal system built from scratch to ensure brand consistency.eatures a robust output system to communicate actions (Confirm/Cancel) back to parent components through Signals.
   - **ViewPostCardComponent**: A card-based component responsible for displaying user posts. It encapsulates the HeaderComponent and manages the visibility of action icons (Edit/Delete) based on a string-check ownership logic.
   - **PostCreateCardComponent**: Integrated component that combines input, textarea, and button to handle post creation with reactive validation.
   - **HeaderComponent**: Dual-variant header supporting a main site view (80px) and a card-based view (70px) with rounded corners and action triggers.
