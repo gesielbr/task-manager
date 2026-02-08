@@ -4,7 +4,7 @@ import { InputComponent } from '../../../shared/components/input/input';
 import { ButtonComponent } from '../../../shared/components/button/button';
 import { TextareaComponent } from '../../../shared/components/textarea/textarea';
 import { HeaderComponent } from '../../../shared/components/header/header';
-import { PostCreateCardComponent } from '../../../shared/components/post-create-card/post-create-card';
+import { ViewPostCardComponent } from '../../../shared/components/view-post-card/view-post-card';
 @Component({
   selector: 'app-playground',
   standalone: true,
@@ -12,7 +12,7 @@ import { PostCreateCardComponent } from '../../../shared/components/post-create-
     ButtonComponent,
     InputComponent,
     TextareaComponent,
-    PostCreateCardComponent,
+    ViewPostCardComponent,
     HeaderComponent,
     ReactiveFormsModule,
   ],
@@ -20,6 +20,8 @@ import { PostCreateCardComponent } from '../../../shared/components/post-create-
   styleUrl: './playground.scss',
 })
 export class PlaygroundComponent {
+  currentUser = 'Victor'; // Simula o usuário logado
+
   // 1. Seu teste de estados anterior
   testForm = new FormGroup({
     textControl: new FormControl(''),
@@ -52,5 +54,26 @@ export class PlaygroundComponent {
   handlePostCreation(data: { title: string; content: string }) {
     console.log('Evento recebido do PostCreateCard:', data);
     alert(`Post criado com sucesso: ${data.title}`);
+  }
+
+  /**
+   * Captura o clique no ícone de editar do ViewPostCard
+   */
+  handleEdit(): void {
+    console.log('📝 Edit action detected in Playground!');
+    // Por enquanto, apenas um alerta para confirmar que o Output está funcionando
+    alert('Edit modal will open here.');
+  }
+
+  /**
+   * Captura o clique no ícone de deletar do ViewPostCard
+   */
+  handleDelete(): void {
+    console.log('🗑️ Delete action detected in Playground!');
+    // Confirm simples para testar a interação
+    const confirmDelete = confirm('Are you sure you want to delete this post?');
+    if (confirmDelete) {
+      console.log('User confirmed deletion.');
+    }
   }
 }

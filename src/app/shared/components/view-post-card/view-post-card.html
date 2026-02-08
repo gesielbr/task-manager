@@ -1,0 +1,21 @@
+<article class="view-card">
+  <app-header
+    [title]="title()"
+    variant="rounded"
+    [showActions]="isOwner()"
+    (editClick)="editClick.emit()"
+    (deleteClick)="deleteClick.emit()"
+  >
+  </app-header>
+
+  <div class="card-content">
+    <div class="meta-info">
+      <span class="username">@{{ username() }}</span>
+      <span class="time">{{ timeAgo() }}</span>
+    </div>
+
+    <div class="post-text">
+      <p>{{ content() }}</p>
+    </div>
+  </div>
+</article>

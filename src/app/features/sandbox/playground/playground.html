@@ -174,8 +174,40 @@
   </section>
 
   <section class="mb-5">
-    <h2 class="h4 mb-3 text-primary">Component: Post Create Card (Integrated)</h2>
-    <h6 class="text-muted small mb-3">Complete form using Input, Textarea and Button:</h6>
-    <app-post-create-card (onCreate)="handlePostCreation($event)"></app-post-create-card>
+    <h2 class="h4 mb-3 text-primary">Component: View Post Card</h2>
+    <div class="card p-4 shadow-sm bg-light">
+      <app-view-post-card
+        title="My First Post at CodeLeap Network!"
+        username="Victor"
+        content="Curabitur suscipit suscipit tellus. Phasellus consectetuer vestibulum elit."
+        timeAgo="25 minutes ago"
+        [isOwner]="true"
+        (editClick)="handleEdit()"
+        (deleteClick)="handleDelete()"
+      >
+      </app-view-post-card>
+
+      <app-view-post-card
+        title="Simply string check = true"
+        username="Victor"
+        content="Curabitur suscipit suscipit tellus..."
+        timeAgo="25 minutes ago"
+        [isOwner]="'Victor' === 'Victor'"
+        (editClick)="handleEdit()"
+        (deleteClick)="handleDelete()"
+      >
+      </app-view-post-card>
+
+      <app-view-post-card
+        title="Simply string check = false"
+        username="GesielDev"
+        content="Angular is awesome!"
+        timeAgo="5 minutes ago"
+        [isOwner]="currentUser === 'GesielDev'"
+        (editClick)="handleEdit()"
+        (deleteClick)="handleDelete()"
+      >
+      </app-view-post-card>
+    </div>
   </section>
 </div>
