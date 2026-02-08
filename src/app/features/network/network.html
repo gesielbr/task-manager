@@ -1,0 +1,22 @@
+<div class="container bg-light g-0">
+  <app-header title="CodeLeap Network" variant="standard"></app-header>
+
+  <div class="container gx-5 mt-4">
+    <main class="network-container">
+      <app-post-create-card (onCreate)="handleCreatePost($event)"> </app-post-create-card>
+
+      @for (post of posts(); track post.id) {
+        <app-view-post-card
+          [title]="post.title"
+          [username]="post.username"
+          [content]="post.content"
+          [timeAgo]="timeTrigger() ? getRelativeTime(post.created_datetime) : ''"
+          [isOwner]="post.username === currentUser()"
+          (editClick)="handleEdit(post.id)"
+          (deleteClick)="handleDelete(post.id)"
+        >
+        </app-view-post-card>
+      }
+    </main>
+  </div>
+</div>
