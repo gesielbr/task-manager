@@ -1,6 +1,8 @@
-<div class="post-create-card">
+<div class="post-create-card" [class.mode-edit]="mode() === 'edit'">
   <div class="card-content">
-    <h2 class="card-title">What’s on your mind?</h2>
+    <h2 class="card-title">
+      {{ mode() === 'create' ? "What's on your mind?" : 'Edit item' }}
+    </h2>
 
     <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
@@ -20,13 +22,49 @@
         ></app-textarea>
       </div>
 
-      <div class="button-container">
+      <!-- <div class="d-flex justify-content-end gap-3 mt-4 w-100">
+        @if (mode() === 'edit') {
+          <app-button
+            type="button"
+            label="Cancel"
+            [outline]="true"
+            [fullWidth]="false"
+            (btnClick)="cancel.emit()"
+          >
+          </app-button>
+        }
+
         <app-button
           type="submit"
-          label="Create"
-          [fullWidth]="false"
-          justify="end"
+          [label]="mode() === 'create' ? 'Create' : 'Save'"
+          [color]="mode() === 'create' ? 'primary' : 'success'"
+          [fullWidth]="mode() === 'create'"
           [disabled]="postForm.invalid"
+        >
+        </app-button>
+      </div> -->
+
+      <div class="d-flex justify-content-end gap-3 mt-4 w-100">
+        @if (mode() === 'edit') {
+          <app-button
+            type="button"
+            label="Cancel"
+            color="light"
+            [outline]="true"
+            [fullWidth]="false"
+            (btnClick)="cancel.emit()"
+            style="width: auto"
+          >
+          </app-button>
+        }
+
+        <app-button
+          type="submit"
+          [label]="mode() === 'create' ? 'Create' : 'Save'"
+          [color]="mode() === 'create' ? 'primary' : mode() === 'edit' ? 'success' : 'danger'"
+          [fullWidth]="mode() === 'create'"
+          [disabled]="postForm.invalid"
+          [style.width]="mode() === 'edit' ? 'auto' : '100%'"
         >
         </app-button>
       </div>

@@ -4,7 +4,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(119, 119, 119, 0.4);
+  background: rgba(119, 119, 119, 0.8); /* Escureci um pouco mais para dar destaque */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,7 +13,11 @@
 
 .modal-container {
   width: 660px;
-  height: 146px;
+  max-width: 95vw;
+
+  height: auto;
+  min-height: 146px;
+
   background: #ffffff;
   border: 1px solid #999999;
   border-radius: 16px;
@@ -21,4 +25,17 @@
   display: flex;
   flex-direction: column;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

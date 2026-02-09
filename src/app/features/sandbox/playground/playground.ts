@@ -6,6 +6,7 @@ import { TextareaComponent } from '../../../shared/components/textarea/textarea'
 import { HeaderComponent } from '../../../shared/components/header/header';
 import { ViewPostCardComponent } from '../../../shared/components/view-post-card/view-post-card';
 import { ModalComponent } from '../../../shared/components/modal/modal';
+import { PostCreateCardComponent } from '../../../shared/components/post-create-card/post-create-card';
 @Component({
   selector: 'app-playground',
   standalone: true,
@@ -17,6 +18,7 @@ import { ModalComponent } from '../../../shared/components/modal/modal';
     HeaderComponent,
     ReactiveFormsModule,
     ModalComponent,
+    PostCreateCardComponent,
   ],
   templateUrl: './playground.html',
   styleUrl: './playground.scss',
@@ -100,5 +102,22 @@ export class PlaygroundComponent {
     // Aqui no futuro chamaremos o Service
     this.isDeleteModalOpen.set(false);
     alert('Item deleted!');
+  }
+
+  // --- NOVA LÓGICA: TESTE DO EDIT MODAL ---
+
+  // 1. Sinal para controlar o Modal de Edição
+  isEditModalOpen = signal(false);
+
+  // 2. Função que simula salvar a edição
+  handleSaveEdit(data: { title: string; content: string }) {
+    console.log('💾 Dados salvos no Playground:', data);
+    alert(`EDITADO COM SUCESSO!\n\nNovo Título: ${data.title}\nConteúdo: ${data.content}`);
+    this.isEditModalOpen.set(false); // Fecha o modal
+  }
+
+  // 3. Função para abrir o modal de teste
+  openEditModalTest() {
+    this.isEditModalOpen.set(true);
   }
 }

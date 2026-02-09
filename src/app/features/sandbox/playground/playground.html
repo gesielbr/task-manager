@@ -257,4 +257,32 @@
       </app-modal>
     </div>
   </section>
+
+  <hr class="my-5" />
+
+  <section class="mb-5">
+    <h2 class="h4 mb-3 text-warning">Component: Post Card (Edit Mode)</h2>
+    <div class="card p-4 shadow-sm">
+      <div class="d-flex flex-column align-items-start gap-3">
+        <p class="text-muted">
+          Este teste reutiliza o <strong>PostCreateCard</strong> dentro de um Modal, mas em modo de
+          edição (com dados iniciais e botão Save).
+        </p>
+
+        <app-button label="Open Edit Modal" color="warning" (btnClick)="openEditModalTest()">
+        </app-button>
+      </div>
+
+      <app-modal [isOpen]="isEditModalOpen()" (close)="isEditModalOpen.set(false)">
+        <app-post-create-card
+          mode="edit"
+          initialTitle="My Awesome Post"
+          initialContent="This is the content fetched from the database previously."
+          (cancel)="isEditModalOpen.set(false)"
+          (save)="handleSaveEdit($event)"
+        >
+        </app-post-create-card>
+      </app-modal>
+    </div>
+  </section>
 </div>

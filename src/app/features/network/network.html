@@ -3,7 +3,7 @@
 
   <div class="container gx-5 mt-4">
     <main class="network-container">
-      <app-post-create-card (onCreate)="handleCreatePost($event)"> </app-post-create-card>
+      <app-post-create-card (save)="handleCreatePost($event)"> </app-post-create-card>
 
       @for (post of posts(); track post.id) {
         <app-view-post-card

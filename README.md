@@ -30,6 +30,24 @@ This application simulates a **user signup flow**, focusing on **clean architect
 
 ---
 
+### 🔘 Button Component
+
+O botão agora é um componente inteligente que adapta seu layout baseando-se no contexto de uso.
+
+- **Cores Oficiais:** Primary (Azul `#7695ec`), Success (Verde `#47B960`) e Danger (Vermelho `#ff5151`).
+- **Modos de Largura:**
+  - `fullWidth=true`: Ocupa 100% da largura (ex: Login, Mobile).
+  - `fullWidth=false`: Mantém o padrão de design de 120px (ex: Modais, Alinhamento à direita).
+- **Estados Visuais:** Inclui feedback tátil no clique (`active scale`), transições suaves e variação de contraste no hover.
+
+### 📝 Post Create/Edit Card
+
+O card de criação foi transformado em um componente híbrido para evitar duplicação de código.
+
+- **Dual Mode:** Suporta os modos `create` (Home) e `edit` (Modal).
+- **Auto-preenchimento:** Utiliza o novo sistema de `Signals` e `effects` do Angular para detectar mudanças e preencher o formulário instantaneamente ao abrir uma edição.
+- **Layout Adaptativo:** O card altera seus títulos, cores de botões e visibilidade de ações (como o botão "Cancel") automaticamente conforme o modo selecionado.
+
 ## 🛠️ Tech Stack
 
 - **Framework:** Angular 19

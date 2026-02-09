@@ -3,21 +3,29 @@
   border: 1px solid #999999;
   border-radius: 16px;
   width: 100%;
-  overflow: hidden;
+
+  &.mode-edit {
+    border: none !important;
+    background: transparent !important;
+    .card-content {
+      padding: 0 !important;
+    }
+  }
 
   .card-content {
     padding: 24px;
-
     .card-title {
-      font-family: 'Roboto', sans-serif;
       font-weight: 700;
       font-size: 22px;
-      color: #000000;
       margin-bottom: 18px;
     }
-
     .form-group {
       margin-bottom: 20px;
     }
   }
+}
+
+// Garante que no modo flex (lado a lado), o componente não tente ser block 100%
+.d-flex app-button {
+  width: auto !important;
 }
