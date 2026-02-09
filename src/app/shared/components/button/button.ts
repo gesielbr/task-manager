@@ -5,9 +5,14 @@ import { Component, computed, input, output } from '@angular/core';
   standalone: true,
   templateUrl: './button.html',
   styleUrl: './button.scss',
-  host: {
+  /* host: {
     display: 'block',
     style: 'width: 100%;',
+  }, */
+  host: {
+    display: 'block', // Mantém como bloco para o container interno funcionar
+    '[style.width]': 'fullWidth() ? "100%" : "fit-content"',
+    // Se for fullWidth (Create), 100%. Se não (Edit/Delete), apenas o necessário.
   },
 })
 export class ButtonComponent {
