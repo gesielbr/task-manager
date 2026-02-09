@@ -1,52 +1,44 @@
-# Codelab Front-End Test – Angular Project
+# 🚀 CodeLeap Network - Frontend Assessment
 
-## 📝 Description
+## 📝 Project Overview
 
-Project developed for the **Codelab Front-End technical test**.  
-This application simulates a **user signup flow**, focusing on **clean architecture**, **reusable UI components**, **modern Angular APIs**, and **high-quality UX and accessibility**.
+This project is a high-performance social media dashboard built for the **CodeLeap** recruitment process. It features a complete CRUD flow, focused on **clean architecture**, **reusable UI components**, and the latest **Angular 19 APIs**.
+
+**🔗 [Live Demo on Vercel](https://task-manager-km9wy51we-gesielbrs-projects.vercel.app/signup)**
+**🔗 [Live Demo on Vercel](https://task-manager-km9wy51we-gesielbrs-projects.vercel.app/network)**
+**🔗 [Live Demo on Vercel](https://task-manager-km9wy51we-gesielbrs-projects.vercel.app/playground)**
 
 ---
 
 ## ✨ Key Features
 
-- **Angular 19 Architecture** Built using **Standalone Components**, ensuring a lightweight, modular, and future-proof structure.
-
-- **Signal-based Inputs (Angular Signals API)** Usage of `input()` signals for optimized change detection and fine-grained reactivity.
+- **Angular 19 Architecture**: Built using **Standalone Components**, ensuring a lightweight, modular, and future-proof structure.
+- **Signal-based Reactivity**: Leveraging Angular's new `input()` and `computed()` signals for fine-grained change detection and superior performance.
+- **Hybrid Component Strategy**: The `PostCreateCardComponent` is a dual-mode engine that handles both creation and editing, reducing code duplication (DRY principle) and ensuring UI consistency.
+- **Component Playground**: A dedicated environment to test UI components in isolation, ensuring they work perfectly before integration.
 
 - **Reusable UI Components**
-  - **ModalComponent**: A highly flexible and accessible modal system built from scratch to ensure brand consistency.eatures a robust output system to communicate actions (Confirm/Cancel) back to parent components through Signals.
-  - **ViewPostCardComponent**: A card-based component responsible for displaying user posts. It encapsulates the HeaderComponent and manages the visibility of action icons (Edit/Delete) based on a string-check ownership logic.
-  - **PostCreateCardComponent**: Integrated component that combines input, textarea, and button to handle post creation with reactive validation.
-  - **HeaderComponent**: Dual-variant header supporting a main site view (80px) and a card-based view (70px) with rounded corners and action triggers.
-  - **InputComponent**: Centralized validation logic, accessibility support, and Bootstrap styling.
-  - **TextareaComponent**: Scalable textarea with support for multiple size variants (`sm`, `md`, `lg`) and reactive forms integration.
-  - **ButtonComponent**: State control (`disabled`, loading-ready structure) for consistent UI behavior.
-
+  - **ModalComponent**: A lightweight, accessible modal system designed to maintain brand identity. It utilizes a Signal-driven communication pattern to bridge actions (Confirm/Cancel) between the overlay and parent components.
+  - **ViewPostCardComponent**: The core content display unit. It encapsulates the HeaderComponent and dynamically toggles administrative actions (Edit/Delete) using granular ownership logic.
+  - **PostCreateCardComponent**: A hybrid "Smart Component" that orchestrates inputs, textareas, and buttons. It handles both Creation and Edition states, leveraging reactive validation for data integrity.
+  - **HeaderComponent & TextareaComponent**: A versatile UI element supporting dual variants: a Global Header (80px) for site navigation and a Contextual Card Header (70px) with rounded corners and event triggers.
+  - **ButtonComponent**: A robust action component featuring state-management for loading and disabled behaviors, ensuring a consistent tactile experience across the entire platform.
 - **Component Playground** A dedicated **Playground environment** to test and visualize UI components in isolation, speeding up development and ensuring design consistency.
-
-- **Reactive & Typed Forms** Implementation of typed `FormGroup` and `FormControl` using `NonNullableFormBuilder` for safer and more predictable form handling.
-
-- **A11y (Accessibility)** Proper use of ARIA attributes (`aria-label`, `aria-describedby`) to guarantee accessibility compliance.
 
 ---
 
-### 🔘 Button Component
+- **Why this structure stands out**:
 
-O botão agora é um componente inteligente que adapta seu layout baseando-se no contexto de uso.
+**Scalability**
+By separating Core, Shared, and Features, you demonstrate an understanding of enterprise-level Angular patterns.
 
-- **Cores Oficiais:** Primary (Azul `#7695ec`), Success (Verde `#47B960`) e Danger (Vermelho `#ff5151`).
-- **Modos de Largura:**
-  - `fullWidth=true`: Ocupa 100% da largura (ex: Login, Mobile).
-  - `fullWidth=false`: Mantém o padrão de design de 120px (ex: Modais, Alinhamento à direita).
-- **Estados Visuais:** Inclui feedback tátil no clique (`active scale`), transições suaves e variação de contraste no hover.
+**Efficiency**
+Highlighting the "Hybrid" nature of your cards proves you value code reusability.
 
-### 📝 Post Create/Edit Card
+**Modernity**
+Mentioning Signals and Content Projection shows you are proficient with advanced, modern Angular techniques.
 
-O card de criação foi transformado em um componente híbrido para evitar duplicação de código.
-
-- **Dual Mode:** Suporta os modos `create` (Home) e `edit` (Modal).
-- **Auto-preenchimento:** Utiliza o novo sistema de `Signals` e `effects` do Angular para detectar mudanças e preencher o formulário instantaneamente ao abrir uma edição.
-- **Layout Adaptativo:** O card altera seus títulos, cores de botões e visibilidade de ações (como o botão "Cancel") automaticamente conforme o modo selecionado.
+---
 
 ## 🛠️ Tech Stack
 
@@ -70,7 +62,7 @@ O card de criação foi transformado em um componente híbrido para evitar dupli
 
 ### Clone the repository
 
-git clone <repository-url>
+git clone <https://github.com/gesielbr/task-managerl>
 
 ### Install dependencies
 
@@ -86,23 +78,37 @@ http://localhost:4200
 
 📂 Project Structure Highlights
 
-src/app/shared/components/view-post-card: Integrated card for view, edit or delete posts.
+### src/app/core:
 
-src/app/shared/components/post-create-card: Integrated card for creating new posts.
+The backbone of the application. Reserved for global singleton services, authentication logic, interceptors, and route guards.
 
-src/app/shared/components/header: Flexible header with size variants and action buttons.
+### src/app/features/auth/signup:
 
-src/app/shared/components/input Reusable input component using Signal-based inputs and centralized validation.
+Encapsulates the user onboarding logic, including reactive form state management and domain-specific validation rules.
 
-src/app/shared/components/textarea Scalable textarea component with multiple size supports.
+### src/app/shared/components/modal:
 
-src/app/shared/components/button Reusable button component with state handling and consistent UI behavior.
+A robust and accessible dialog system that utilizes Content Projection (<ng-content>) to dynamically render edit forms or deletion confirmation alerts.
 
-src/app/playground Component playground for isolated testing and UI experimentation.
+### src/app/shared/components/post-create-card:
 
-src/app/features/auth/signup Signup feature containing form logic and validation rules.
+hybrid "Smart Component" designed for both creating and editing posts, significantly reducing code duplication through state-driven logic (DRY principle).
 
-src/app/core Reserved for global services, authentication logic, and guards.
+### src/app/shared/components/view-post-card:
+
+An integrated unit for post visualization that orchestrates delete/edit interactions based on user ownership permissions.
+
+### src/app/shared/components/header:
+
+A multi-variant header component that adapts its height and styling according to its placement, supporting both Global and Card-based views.
+
+### src/app/shared/components:
+
+(UI Kit): Includes Input, Textarea, and Button components. These are atomic, reusable elements leveraging Signal-based inputs for high-performance reactivity and centralized validation.
+
+### src/app/playground:
+
+A dedicated sandboxed environment for isolated component testing and UI experimentation, ensuring design system integrity before feature integration.
 
 ### 🧪 Validation Logic
 
