@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, computed } from '@angular/core';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
 
 @Component({
@@ -9,32 +9,29 @@ import { ReactiveFormsModule, FormControl } from '@angular/forms';
   styleUrl: './input.scss',
 })
 export class InputComponent {
-  // Inputs baseados em Signals (Angular 19)
   label = input<string>('');
   placeholder = input<string>('');
   type = input<'text' | 'password' | 'email' | 'number'>('text');
   control = input.required<FormControl>();
-  
-  // Propriedades de acessibilidade
-  ariaLabel = input<string>(''); 
-  addonId = input<string>(''); 
 
-  /**
-   * Gerador de ID único: Resolve o erro "Property inputId does not exist"
-   * e garante que o Label sempre clique no Input correto.
-   */
-  inputId = 'cl-input-' + Math.random().toString(36).substring(2, 9);
+  // Accessibility properties
+  ariaLabel = input<string>('');
 
-  get errorMessage() {
-    const errors = this.control().errors;
-    if (!errors) return null;
+  // Unique ID generated only once during initialization
+  readonly inputId = `cl-input-${Math.random().toString(36).substring(2, 9)}`;
 
+  // Computed Signal: Recalculates only when the control status or value changes
+  errorMessage = computed(() => {
+    const control = this.control();
+    // We force the signal to observe changes in the form status
+    if (!control.errors || !control.touched) return null;
+
+    const errors = control.errors;
     if (errors['required']) return 'This field is required';
-    
     if (errors['minlength']) {
       return `Minimum of ${errors['minlength'].requiredLength} characters required`;
     }
 
     return 'Invalid field';
-  }
+  });
 }

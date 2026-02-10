@@ -2,7 +2,7 @@
   <label [attr.for]="inputId" class="form-label">
     {{ label() }}
   </label>
-  
+
   <input
     [id]="inputId"
     [type]="type()"
@@ -10,16 +10,18 @@
     [placeholder]="placeholder()"
     [attr.aria-label]="ariaLabel() || label()"
     [attr.aria-invalid]="control().invalid && control().touched"
-    [attr.aria-describedby]="control().invalid ? inputId + '-error' : (addonId() || null)"
+    [attr.aria-describedby]="errorMessage() ? inputId + '-error' : null"
     class="form-control"
   />
 
-  @if (control().invalid && control().touched) {
-    <small 
-      [id]="inputId + '-error'" 
-      class="text-danger d-block mt-1" 
-      role="alert">
-      {{ errorMessage }}
+  @if (errorMessage()) {
+    <small
+      [id]="inputId + '-error'"
+      class="text-danger d-block mt-1"
+      role="alert"
+      aria-live="polite"
+    >
+      {{ errorMessage() }}
     </small>
   }
 </div>
