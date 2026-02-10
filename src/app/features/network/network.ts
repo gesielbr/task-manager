@@ -5,17 +5,31 @@ import { PostCreateCardComponent } from '../../shared/components/post-create-car
 import { ViewPostCardComponent } from '../../shared/components/view-post-card/view-post-card';
 import { Post, CreatePostDto } from '../../shared/models/post.model';
 import { PostService } from '../../services/post';
+import { ModalComponent } from '../../shared/components/modal/modal';
+import { ButtonComponent } from '../../shared/components/button/button';
 
 @Component({
   selector: 'app-network',
-  standalone: true, // Garanta que está como standalone se for v17+
-  imports: [CommonModule, HeaderComponent, ViewPostCardComponent, PostCreateCardComponent],
+  standalone: true,
+  imports: [
+    CommonModule,
+    HeaderComponent,
+    ViewPostCardComponent,
+    PostCreateCardComponent,
+    ModalComponent,
+    ButtonComponent,
+  ],
   templateUrl: './network.html',
   styleUrl: './network.scss',
 })
 export class NetworkComponent implements OnInit, OnDestroy {
   // Injeção do Service
   private postService = inject(PostService);
+
+  isDeleteModalOpen = signal(false);
+  isEditModalOpen = signal(false);
+  selectedPostId = signal<number | null>(null);
+  selectedPostForEdit = signal<Post | null>(null); // Para carregar os dados no modal de edit
 
   currentUser = signal<string>('Victor');
   posts = signal<Post[]>([]); // Começa vazio agora
@@ -59,14 +73,48 @@ export class NetworkComponent implements OnInit, OnDestroy {
     });
   }
 
+  // --- LÓGICA DO DELETE ---
+
   handleDelete(id: number) {
-    if (confirm('Are you sure you want to delete this item?')) {
+    this.selectedPostId.set(id);
+    this.isDeleteModalOpen.set(true);
+  }
+
+  confirmDeletion() {
+    const id = this.selectedPostId();
+    if (id) {
       this.postService.deletePost(id).subscribe({
         next: () => {
-          // Remove da tela apenas se deletou no banco
           this.posts.update((current) => current.filter((p) => p.id !== id));
+          this.isDeleteModalOpen.set(false);
         },
         error: (err) => console.error('Erro ao deletar:', err),
+      });
+    }
+  }
+
+  // --- LÓGICA DO EDIT ---
+
+  handleEdit(id: number) {
+    const post = this.posts().find((p) => p.id === id);
+    if (post) {
+      this.selectedPostForEdit.set(post);
+      this.isEditModalOpen.set(true);
+    }
+  }
+
+  handleSaveEdit(updatedData: { title: string; content: string }) {
+    const post = this.selectedPostForEdit();
+    if (post?.id) {
+      // No Edit, o username geralmente não muda, mas passamos os novos campos
+      const dataToUpdate = { ...updatedData, username: post.username };
+
+      this.postService.updatePost(post.id, dataToUpdate).subscribe({
+        next: (res) => {
+          this.posts.update((current) => current.map((p) => (p.id === res.id ? res : p)));
+          this.isEditModalOpen.set(false);
+        },
+        error: (err) => console.error('Erro ao editar:', err),
       });
     }
   }
@@ -90,10 +138,5 @@ export class NetworkComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if (this.intervalId) clearInterval(this.intervalId);
-  }
-
-  handleEdit(id: number) {
-    console.log('Aqui você abriria o modal de edição para o ID:', id);
-    // Próximo passo: Criar a lógica do modal de edição
   }
 }
