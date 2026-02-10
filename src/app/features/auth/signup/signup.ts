@@ -11,9 +11,8 @@ import { InputComponent } from '../../../shared/components/input/input';
   styleUrl: './signup.scss',
 })
 export class SignupComponent {
-  // O formulário que controla a validade do botão ENTER
   signupForm = new FormGroup({
-    username: new FormControl('', [Validators.required,Validators.minLength(3)])
+    username: new FormControl('', [Validators.required, Validators.minLength(3)]),
   });
 
   isLoading = false;
@@ -21,11 +20,9 @@ export class SignupComponent {
   handleEnter() {
     if (this.signupForm.valid) {
       this.isLoading = true;
-      // Simulando a interação com API solicitada no teste
       setTimeout(() => {
         console.log('Username saved:', this.signupForm.value.username);
         this.isLoading = false;
-        // Navegação para o Feed ocorreria aqui
       }, 1500);
     }
   }

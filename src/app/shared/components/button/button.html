@@ -1,14 +1,15 @@
-<div class="btn-container" [class]="containerClass()">
+<div [class]="containerClass()" class="btn-container">
   <button
     [type]="type()"
-    class="btn"
-    [class]="buttonClass()"
-    [class.is-processing]="isLoading()"
     [disabled]="disabled() || isLoading()"
+    [class]="buttonClass()"
     (click)="onClick()"
+    [attr.aria-disabled]="disabled() || isLoading()"
+    [attr.aria-label]="isLoading() ? 'Processing request' : label()"
   >
     @if (isLoading()) {
-      <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+      <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+      <span class="visually-hidden">Loading...</span>
       <span>Processing...</span>
     } @else {
       {{ label() }}

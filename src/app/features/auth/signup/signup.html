@@ -2,24 +2,27 @@
   <section class="signup-card shadow-sm" aria-labelledby="signup-title">
     <h1 id="signup-title">Welcome to CodeLeap network!</h1>
 
-    <form [formGroup]="signupForm" (ngSubmit)="handleEnter()" class="signup-content">
+    <form
+      [formGroup]="signupForm"
+      (ngSubmit)="handleEnter()"
+      [aria-busy]="isLoading"
+      class="signup-content"
+    >
       <app-input
         label="Please enter your username"
         placeholder="John Doe"
         [control]="signupForm.controls.username"
-      >
-      </app-input>
+      ></app-input>
 
-      <div class="button-container">
+      <div class="d-flex justify-content-end">
         <app-button
           label="ENTER"
           type="submit"
-          justify="end"
+          [justify]="'end'"
           [fullWidth]="false"
           [disabled]="signupForm.invalid"
           [isLoading]="isLoading"
-        >
-        </app-button>
+        ></app-button>
       </div>
     </form>
   </section>
