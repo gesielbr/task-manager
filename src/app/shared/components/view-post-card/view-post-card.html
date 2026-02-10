@@ -1,5 +1,6 @@
-<article class="view-card">
+<article class="view-card" role="article" [attr.aria-labelledby]="'post-title-' + title()">
   <app-header
+    [id]="'post-title-' + title()"
     [title]="title()"
     variant="rounded"
     [showActions]="isOwner()"
@@ -9,9 +10,9 @@
   </app-header>
 
   <div class="card-content">
-    <div class="meta-info">
+    <div class="meta-info" role="group" aria-label="Post metadata">
       <span class="username">@{{ username() }}</span>
-      <span class="time">{{ timeAgo() }}</span>
+      <time class="time" [attr.datetime]="timeAgo()">{{ timeAgo() }}</time>
     </div>
 
     <div class="post-text">

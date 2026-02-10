@@ -16,13 +16,11 @@ export class TextareaComponent {
   placeholder = input<string>('');
   size = input<TextareaSize>('md');
 
-  // ID estável e único
+  // ID
   readonly inputId = `textarea-${Math.random().toString(36).substring(2, 9)}`;
 
-  // Computed para classes de tamanho
   textareaSizeClass = computed(() => `textarea-${this.size()}`);
 
-  // Mensagem de erro reativa
   errorMessage = computed(() => {
     const ctrl = this.control();
     if (!ctrl.errors || !ctrl.touched) return null;
