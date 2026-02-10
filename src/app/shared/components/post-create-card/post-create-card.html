@@ -1,10 +1,15 @@
-<div class="post-create-card" [class.mode-edit]="mode() === 'edit'">
+<div
+  class="post-create-card"
+  [class.mode-edit]="mode() === 'edit'"
+  role="region"
+  [attr.aria-labelledby]="mode() === 'edit' ? 'edit-title' : 'create-title'"
+>
   <div class="card-content">
-    <h2 class="card-title">
+    <h2 class="card-title" [id]="mode() === 'edit' ? 'edit-title' : 'create-title'">
       {{ mode() === 'create' ? "What's on your mind?" : 'Edit item' }}
     </h2>
 
-    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()" novalidate>
       <div class="form-group">
         <app-input
           label="Title"
@@ -31,6 +36,7 @@
             [outline]="true"
             [fullWidth]="false"
             (btnClick)="cancel.emit()"
+            title="Cancel editing"
           >
           </app-button>
         }
@@ -38,10 +44,11 @@
         <app-button
           type="submit"
           [label]="mode() === 'create' ? 'Create' : 'Save'"
-          [color]="mode() === 'create' ? 'primary' : mode() === 'edit' ? 'success' : 'danger'"
+          [color]="mode() === 'create' ? 'primary' : 'success'"
           [fullWidth]="mode() === 'create'"
           [disabled]="postForm.invalid"
           [style.width]="mode() === 'edit' ? 'auto' : '100%'"
+          [title]="mode() === 'create' ? 'Create new post' : 'Save changes'"
         >
         </app-button>
       </div>
