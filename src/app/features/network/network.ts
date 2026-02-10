@@ -1,77 +1,99 @@
-import { Component, signal, OnInit, OnDestroy } from '@angular/core';
+import { Component, signal, OnInit, OnDestroy, inject } from '@angular/core'; // Adicionei inject
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../shared/components/header/header';
 import { PostCreateCardComponent } from '../../shared/components/post-create-card/post-create-card';
 import { ViewPostCardComponent } from '../../shared/components/view-post-card/view-post-card';
-import { Post } from '../../shared/models/post.model';
+import { Post, CreatePostDto } from '../../shared/models/post.model';
+import { PostService } from '../../services/post';
 
 @Component({
   selector: 'app-network',
+  standalone: true, // Garanta que está como standalone se for v17+
   imports: [CommonModule, HeaderComponent, ViewPostCardComponent, PostCreateCardComponent],
   templateUrl: './network.html',
   styleUrl: './network.scss',
 })
 export class NetworkComponent implements OnInit, OnDestroy {
-  currentUser = signal<string>('Victor');
+  // Injeção do Service
+  private postService = inject(PostService);
 
+  currentUser = signal<string>('Victor');
+  posts = signal<Post[]>([]); // Começa vazio agora
   timeTrigger = signal(Date.now());
   private intervalId: any;
 
-  posts = signal<Post[]>([
-    {
-      id: 1,
-      username: 'Victor',
-      created_datetime: new Date(new Date().getTime() - 25 * 60000),
-      title: 'My First Post!',
-      content: 'Hello CodeLeap Network! Testing the real-time relative time logic.',
-    },
-    {
-      id: 2,
-      username: 'GesielDev',
-      created_datetime: new Date(new Date().getTime() - 2 * 60000),
-      title: 'Angular 19 Tips',
-      content: 'Signals are the future of state management.',
-    },
-  ]);
+  ngOnInit() {
+    this.loadPosts(); // Carrega os posts do Render ao iniciar
 
-  getRelativeTime(postDate: Date): string {
+    this.intervalId = setInterval(() => {
+      this.timeTrigger.set(Date.now());
+    }, 60000);
+  }
+
+  // --- MÉTODOS DE COMUNICAÇÃO COM O BACKEND ---
+
+  loadPosts() {
+    this.postService.getPosts().subscribe({
+      next: (data) => {
+        // O Django retorna os posts, vamos atualizar o signal
+        this.posts.set(data);
+      },
+      error: (err) => console.error('Erro ao carregar posts:', err),
+    });
+  }
+
+  handleCreatePost(eventData: { title: string; content: string }) {
+    // Criamos o objeto completo exigido pelo CreatePostDto (incluindo o username)
+    const postParaEnviar: CreatePostDto = {
+      username: this.currentUser(), // Pegamos o valor do seu Signal
+      title: eventData.title,
+      content: eventData.content,
+    };
+
+    // Agora passamos o objeto completo para o Service
+    this.postService.createPost(postParaEnviar).subscribe({
+      next: (createdPost) => {
+        this.posts.update((current) => [createdPost, ...current]);
+      },
+      error: (err) => console.error('Erro ao criar post:', err),
+    });
+  }
+
+  handleDelete(id: number) {
+    if (confirm('Are you sure you want to delete this item?')) {
+      this.postService.deletePost(id).subscribe({
+        next: () => {
+          // Remove da tela apenas se deletou no banco
+          this.posts.update((current) => current.filter((p) => p.id !== id));
+        },
+        error: (err) => console.error('Erro ao deletar:', err),
+      });
+    }
+  }
+
+  // --- LÓGICA DE TEMPO ---
+
+  getRelativeTime(postDate: any): string {
+    // O Django envia string, precisamos converter para Date
+    const date = new Date(postDate);
     const now = new Date();
-    const diffInSeconds = Math.floor((now.getTime() - postDate.getTime()) / 1000);
+    const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
     const diffInMinutes = Math.floor(diffInSeconds / 60);
 
     if (diffInMinutes < 1) return 'just now';
     if (diffInMinutes === 1) return '1 minute ago';
-    return `${diffInMinutes} minutes ago`;
-  }
+    if (diffInMinutes < 60) return `${diffInMinutes} minutes ago`;
 
-  ngOnInit() {
-    // A cada 60 segundos, atualizamos o trigger
-    this.intervalId = setInterval(() => {
-      this.timeTrigger.set(Date.now());
-      console.log('⏰ Time updated!');
-    }, 60000);
+    const diffInHours = Math.floor(diffInMinutes / 60);
+    return `${diffInHours} hours ago`;
   }
 
   ngOnDestroy() {
-    // Limpa o cronômetro quando sair da página (boas práticas!)
     if (this.intervalId) clearInterval(this.intervalId);
   }
 
-  handleCreatePost(newPost: any) {
-    const postParaAdicionar: Post = {
-      id: Math.random(),
-      username: this.currentUser(),
-      created_datetime: new Date(), // Pega a hora exata do clique
-      ...newPost,
-    };
-    this.posts.update((current) => [postParaAdicionar, ...current]);
-  }
-
   handleEdit(id: number) {
-    console.log('Abrir modal de edição para o post:', id);
-  }
-
-  handleDelete(id: number) {
-    console.log('Abrir confirmação de deleção para o post:', id);
+    console.log('Aqui você abriria o modal de edição para o ID:', id);
+    // Próximo passo: Criar a lógica do modal de edição
   }
 }

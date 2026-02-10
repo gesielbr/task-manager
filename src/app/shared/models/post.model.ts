@@ -7,6 +7,7 @@ export interface Post {
 }
 
 export interface CreatePostDto {
+  username: string; // O backend exige saber QUEM está postando
   title: string;
   content: string;
 }
