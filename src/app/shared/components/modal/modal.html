@@ -1,6 +1,6 @@
 @if (isOpen()) {
   <div class="modal-overlay" (click)="handleOverlayClick($event)">
-    <div class="modal-container">
+    <div #modalContainer class="modal-container" role="dialog" aria-modal="true" tabindex="-1">
       <ng-content></ng-content>
     </div>
   </div>
