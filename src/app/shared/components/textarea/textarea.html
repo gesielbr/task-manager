@@ -1,4 +1,4 @@
-<div>
+<div class="textarea-group">
   <label [for]="inputId" class="form-label">
     {{ label() }}
   </label>
@@ -9,13 +9,14 @@
     [placeholder]="placeholder()"
     class="form-control"
     [class]="textareaSizeClass()"
-    [class.is-invalid]="control().invalid && control().touched"
-    [attr.aria-invalid]="control().invalid && control().touched"
+    [class.is-invalid]="errorMessage()"
+    [attr.aria-invalid]="errorMessage() ? 'true' : 'false'"
+    [attr.aria-describedby]="errorMessage() ? inputId + '-error' : null"
   ></textarea>
 
-  @if (control().invalid && control().touched) {
-    <div class="invalid-feedback d-block">
-      {{ errorMessage }}
+  @if (errorMessage()) {
+    <div [id]="inputId + '-error'" class="invalid-feedback d-block" role="alert" aria-live="polite">
+      {{ errorMessage() }}
     </div>
   }
 </div>

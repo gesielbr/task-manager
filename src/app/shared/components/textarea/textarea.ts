@@ -16,20 +16,21 @@ export class TextareaComponent {
   placeholder = input<string>('');
   size = input<TextareaSize>('md');
 
-  // Ajustei para usar substring (moderno)
-  inputId = `textarea-${Math.random().toString(36).substring(2, 9)}`;
+  // ID estável e único
+  readonly inputId = `textarea-${Math.random().toString(36).substring(2, 9)}`;
 
-  // Computed para as classes de tamanho
+  // Computed para classes de tamanho
   textareaSizeClass = computed(() => `textarea-${this.size()}`);
 
-  get errorMessage(): string | null {
-    const errors = this.control().errors;
-    const touched = this.control().touched;
+  // Mensagem de erro reativa
+  errorMessage = computed(() => {
+    const ctrl = this.control();
+    if (!ctrl.errors || !ctrl.touched) return null;
 
-    if (!touched || !errors) return null;
+    const errors = ctrl.errors;
     if (errors['required']) return 'This field is required';
     if (errors['minlength']) return `Minimum ${errors['minlength'].requiredLength} characters`;
-    
+
     return 'Invalid field';
-  }
+  });
 }
