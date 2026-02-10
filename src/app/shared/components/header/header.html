@@ -1,10 +1,20 @@
-<header class="app-header" [class.rounded-top]="variant() === 'rounded'">
-  <h2>{{ title() }}</h2>
+<header
+  class="app-header"
+  [class.rounded-top]="variant() === 'rounded'"
+  [attr.role]="variant() === 'standard' ? 'banner' : null"
+>
+  <h2 class="header-title">{{ title() }}</h2>
 
   @if (showActions()) {
-    <div class="actions">
-      <button class="icon-btn" (click)="deleteClick.emit()" aria-label="Delete item">
-        <span class="material-placeholder">
+    <div class="actions" role="group" aria-label="Post actions">
+      <button
+        class="icon-btn delete-btn"
+        (click)="deleteClick.emit()"
+        aria-label="Delete post"
+        title="Delete post"
+        type="button"
+      >
+        <span class="material-placeholder" aria-hidden="true">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="19"
@@ -20,8 +30,14 @@
         </span>
       </button>
 
-      <button class="icon-btn" (click)="editClick.emit()" aria-label="Edit item">
-        <span class="material-placeholder">
+      <button
+        class="icon-btn edit-btn"
+        (click)="editClick.emit()"
+        aria-label="Edit post"
+        title="Edit post"
+        type="button"
+      >
+        <span class="material-placeholder" aria-hidden="true">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="32"

@@ -23,7 +23,7 @@
   h2 {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
-    font-size: 22px;
+    font-size: clamp(1.125rem, 1.05rem + 0.38vw, 1.375rem);
     line-height: 100%;
     color: #ffffff;
     margin: 0;
