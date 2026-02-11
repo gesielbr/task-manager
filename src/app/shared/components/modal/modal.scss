@@ -3,8 +3,9 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
-  background: rgba(119, 119, 119, 0.8); /* Escureci um pouco mais para dar destaque */
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: rgba(119, 119, 119, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
