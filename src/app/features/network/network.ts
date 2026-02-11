@@ -31,13 +31,20 @@ export class NetworkComponent implements OnInit, OnDestroy {
   selectedPostId = signal<number | null>(null);
   selectedPostForEdit = signal<Post | null>(null); // Para carregar os dados no modal de edit
 
-  currentUser = signal<string>('Victor');
+  currentUser = signal<string>('');
+
   posts = signal<Post[]>([]);
   timeTrigger = signal(Date.now());
   private intervalId: any;
 
   ngOnInit() {
-    this.loadPosts(); // Carrega os posts do Render ao iniciar
+    const savedUser = localStorage.getItem('currentUser');
+
+    if (savedUser) {
+      this.currentUser.set(savedUser);
+    }
+
+    this.loadPosts();
 
     this.intervalId = setInterval(() => {
       this.timeTrigger.set(Date.now());
