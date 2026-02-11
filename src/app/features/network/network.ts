@@ -32,7 +32,7 @@ export class NetworkComponent implements OnInit, OnDestroy {
   selectedPostForEdit = signal<Post | null>(null); // Para carregar os dados no modal de edit
 
   currentUser = signal<string>('Victor');
-  posts = signal<Post[]>([]); // Começa vazio agora
+  posts = signal<Post[]>([]);
   timeTrigger = signal(Date.now());
   private intervalId: any;
 
@@ -57,17 +57,17 @@ export class NetworkComponent implements OnInit, OnDestroy {
   }
 
   handleCreatePost(eventData: { title: string; content: string }) {
-    // Criamos o objeto completo exigido pelo CreatePostDto (incluindo o username)
     const postParaEnviar: CreatePostDto = {
-      username: this.currentUser(), // Pegamos o valor do seu Signal
+      username: this.currentUser(),
       title: eventData.title,
       content: eventData.content,
     };
 
-    // Agora passamos o objeto completo para o Service
     this.postService.createPost(postParaEnviar).subscribe({
-      next: (createdPost) => {
-        this.posts.update((current) => [createdPost, ...current]);
+      next: (response) => {
+        const createdPost = response.data;
+
+        this.posts.set([createdPost, ...this.posts()]);
       },
       error: (err) => console.error('Erro ao criar post:', err),
     });
@@ -105,18 +105,25 @@ export class NetworkComponent implements OnInit, OnDestroy {
 
   handleSaveEdit(updatedData: { title: string; content: string }) {
     const post = this.selectedPostForEdit();
-    if (post?.id) {
-      // No Edit, o username geralmente não muda, mas passamos os novos campos
-      const dataToUpdate = { ...updatedData, username: post.username };
+    if (!post?.id) return;
 
-      this.postService.updatePost(post.id, dataToUpdate).subscribe({
-        next: (res) => {
-          this.posts.update((current) => current.map((p) => (p.id === res.id ? res : p)));
-          this.isEditModalOpen.set(false);
-        },
-        error: (err) => console.error('Erro ao editar:', err),
-      });
-    }
+    const dataToUpdate: CreatePostDto = {
+      username: post.username,
+      title: updatedData.title,
+      content: updatedData.content,
+    };
+
+    this.postService.updatePost(post.id, dataToUpdate).subscribe({
+      next: (response) => {
+        const updatedPost = response.data;
+
+        this.posts.set(this.posts().map((p) => (p.id === updatedPost.id ? updatedPost : p)));
+
+        this.isEditModalOpen.set(false);
+        this.selectedPostForEdit.set(null);
+      },
+      error: (err) => console.error('Erro ao editar:', err),
+    });
   }
 
   // --- LÓGICA DE TEMPO ---

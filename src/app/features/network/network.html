@@ -10,7 +10,7 @@
           [title]="post.title"
           [username]="post.username"
           [content]="post.content"
-          [timeAgo]="timeTrigger() ? getRelativeTime(post.created_datetime) : ''"
+          [timeAgo]="getRelativeTime(post.created_datetime)"
           [isOwner]="post.username === currentUser()"
           (editClick)="handleEdit(post.id)"
           (deleteClick)="handleDelete(post.id)"

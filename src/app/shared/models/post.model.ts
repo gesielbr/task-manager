@@ -11,3 +11,8 @@ export interface CreatePostDto {
   title: string;
   content: string;
 }
+
+export interface ApiResponse<T> {
+  message: string;
+  data: T;
+}
