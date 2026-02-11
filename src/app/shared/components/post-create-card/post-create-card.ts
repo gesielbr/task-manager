@@ -52,4 +52,12 @@ export class PostCreateCardComponent {
       }
     }
   }
+
+  onContentKeydown(event: KeyboardEvent) {
+    if (event.ctrlKey && event.key === 'Enter') {
+      if (this.postForm.valid) {
+        this.onSubmit();
+      }
+    }
+  }
 }

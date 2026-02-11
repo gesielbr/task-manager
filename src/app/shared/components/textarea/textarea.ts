@@ -1,4 +1,4 @@
-import { Component, input, computed } from '@angular/core';
+import { Component, input, output, computed } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 export type TextareaSize = 'sm' | 'md' | 'lg';
@@ -15,6 +15,7 @@ export class TextareaComponent {
   control = input.required<FormControl>();
   placeholder = input<string>('');
   size = input<TextareaSize>('md');
+  keyDown = output<KeyboardEvent>();
 
   // ID
   readonly inputId = `textarea-${Math.random().toString(36).substring(2, 9)}`;

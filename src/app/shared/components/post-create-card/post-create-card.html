@@ -24,6 +24,7 @@
           placeholder="Content here"
           size="sm"
           [control]="postForm.controls.content"
+          (keyDown)="onContentKeydown($event)"
         ></app-textarea>
       </div>
 

@@ -12,6 +12,7 @@
     [class.is-invalid]="errorMessage()"
     [attr.aria-invalid]="errorMessage() ? 'true' : 'false'"
     [attr.aria-describedby]="errorMessage() ? inputId + '-error' : null"
+    (keydown)="keyDown.emit($event)"
   ></textarea>
 
   @if (errorMessage()) {
